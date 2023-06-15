@@ -1,0 +1,14 @@
+- id: {{.test_user_id}}
+  created_at: RAW=NOW()
+  created_by: NULL
+  updated_at: RAW=NOW()
+  updated_by: NULL
+  first_name: first user
+  middle_name: middle first user
+  last_name: last first user
+  active: true
+  flavour: PRO
+  username: test-test
+  user_type: ADMIN
+  device_token: a991f301-319b-4311-82cf-277551b71b4e
+  residence: a991f301-319b-4311-82cf-277551b71b4e

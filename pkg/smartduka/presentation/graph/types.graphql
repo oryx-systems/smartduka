@@ -1,0 +1,20 @@
+type User {
+    id: String!
+    firstName: String!
+    middleName: String!
+    lastName: String!
+    active: Boolean!
+    flavour: Flavour!
+    username: String!
+    userType: String!
+    userContact: Contact!
+}
+
+type Contact {
+    id: String!
+    active: Boolean!
+    contactType: String!
+    contactValue: String!
+    userID: String!
+    flavour: Flavour!
+}

@@ -1,0 +1,10 @@
+- id: a991f301-319b-4311-82cf-277551b71b4e
+  created_at: RAW=NOW()
+  created_by: NULL
+  updated_at: RAW=NOW()
+  updated_by: NULL
+  active: true
+  contact_type: PHONE
+  contact_value: {{.test_phone}}
+  flavour: PRO
+  user_id: {{.test_user_id}}

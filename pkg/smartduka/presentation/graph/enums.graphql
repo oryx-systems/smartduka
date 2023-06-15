@@ -1,0 +1,9 @@
+enum Flavour {
+  CONSUMER
+  PRO
+}
+
+enum IdentifierType {
+  NATIONAL_ID
+  PASSPORT
+}
