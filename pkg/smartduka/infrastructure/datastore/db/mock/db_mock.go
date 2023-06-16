@@ -25,19 +25,16 @@ type DataStoreMock struct {
 // NewDataStoreMock returns a new instance of the mock datastore
 func NewDataStoreMock() *DataStoreMock {
 	user := &domain.User{
-		ID:         uuid.New().String(),
-		FirstName:  gofakeit.FirstName(),
-		MiddleName: gofakeit.BeerAlcohol(),
-		LastName:   gofakeit.LastName(),
-		Active:     true,
-		Flavour:    enums.FlavourPro,
-		UserName:   gofakeit.Username(),
-		UserType:   "TENANT",
+		ID:        uuid.New().String(),
+		FirstName: gofakeit.FirstName(),
+		LastName:  gofakeit.LastName(),
+		Active:    true,
+		UserName:  gofakeit.Username(),
+		UserType:  "ADMIN",
 		UserContact: domain.Contact{
 			ID: uuid.New().String(),
 		},
 		DeviceToken: uuid.New().String(),
-		Residence:   uuid.New().String(),
 	}
 
 	return &DataStoreMock{
