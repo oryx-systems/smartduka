@@ -48,69 +48,62 @@ func NewUseCasesUser(
 
 // HandleIncomingMessages receives ang processes the incoming SMS data
 func (u UseCasesUserImpl) Login(ctx context.Context, loginInput *dto.LoginInput) (*dto.LoginResponse, error) {
-	user, err := u.Query.GetUserProfileByPhoneNumber(ctx, loginInput.PhoneNumber, loginInput.Flavour)
-	if err != nil {
-		return nil, err
-	}
+	// TODO: Restore later
+	// user, err := u.Query.GetUserProfileByPhoneNumber(ctx, loginInput.PhoneNumber, loginInput.Flavour)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	userPIN, err := u.Query.GetUserPINByUserID(ctx, user.ID, user.Flavour)
-	if err != nil {
-		return nil, err
-	}
+	// userPIN, err := u.Query.GetUserPINByUserID(ctx, user.ID, user.Flavour)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
 	// If pin `ValidTo` field is in the past (expired). This means the user has to change their pin
-	currentTime := time.Now()
-	expired := currentTime.After(userPIN.ValidTo)
-	if expired {
-		return nil, fmt.Errorf("pin expired. Please change your pin")
-	}
+	// currentTime := time.Now()
+	// expired := currentTime.After(userPIN.ValidTo)
+	// if expired {
+	// 	return nil, fmt.Errorf("pin expired. Please change your pin")
+	// }
 
-	matched := utils.ComparePIN(
-		loginInput.PIN,
-		userPIN.Salt,
-		userPIN.HashedPIN,
-		nil,
-	)
+	// matched := utils.ComparePIN(
+	// 	loginInput.PIN,
+	// 	userPIN.Salt,
+	// 	userPIN.HashedPIN,
+	// 	nil,
+	// )
 
-	if !matched {
-		return nil, fmt.Errorf("invalid pin")
-	}
+	// if !matched {
+	// 	return nil, fmt.Errorf("invalid pin")
+	// }
 
-	tokenResponse, err := utils.GenerateJWTToken(user.ID)
-	if err != nil {
-		return nil, err
-	}
+	// tokenResponse, err := utils.GenerateJWTToken(user.ID)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	userToken, err := utils.ValidateJWTToken(tokenResponse.Token)
-	if err != nil {
-		return nil, err
-	}
+	// userToken, err := utils.ValidateJWTToken(tokenResponse.Token)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	user.AuthCredentials.IDToken = userToken.Token
-	user.AuthCredentials.ExpiresIn = userToken.ExpiresIn
+	// user.AuthCredentials.IDToken = userToken.Token
+	// user.AuthCredentials.ExpiresIn = userToken.ExpiresIn
 
-	return &dto.LoginResponse{
-		UserProfile: user,
-	}, nil
+	// return &dto.LoginResponse{
+	// 	UserProfile: user,
+	// }, nil
+
+	return nil, nil
 }
 
 // HandleRegistration handles the user registration
 func (u UseCasesUserImpl) RegisterUser(ctx context.Context, registerInput *dto.RegisterUserInput) error {
 	user := &domain.User{
-		FirstName:   registerInput.FirstName,
-		MiddleName:  registerInput.MiddleName,
-		LastName:    registerInput.LastName,
-		Active:      true,
-		Flavour:     registerInput.Flavour,
-		UserName:    registerInput.UserName,
-		DeviceToken: registerInput.DeviceToken,
-		Residence:   registerInput.Residence,
-	}
-
-	if user.Flavour == enums.FlavourConsumer {
-		user.UserType = "TENANT"
-	} else {
-		user.UserType = "MANAGER"
+		FirstName: registerInput.FirstName,
+		LastName:  registerInput.LastName,
+		Active:    true,
+		UserName:  registerInput.UserName,
 	}
 
 	contact := &domain.Contact{

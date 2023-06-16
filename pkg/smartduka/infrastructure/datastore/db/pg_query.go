@@ -28,14 +28,11 @@ func (d *DbServiceImpl) GetUserProfileByUserID(ctx context.Context, userID strin
 		ID:          *user.ID,
 		UserContact: *contact,
 		FirstName:   user.FirstName,
-		MiddleName:  user.MiddleName,
 		LastName:    user.LastName,
 		Active:      user.Active,
-		Flavour:     user.Flavour,
 		UserName:    user.UserName,
 		UserType:    user.UserType,
 		DeviceToken: user.DeviceToken,
-		Residence:   user.Residence,
 	}, nil
 }
 
@@ -59,14 +56,11 @@ func (d *DbServiceImpl) GetUserProfileByPhoneNumber(ctx context.Context, phoneNu
 		ID:          *user.ID,
 		UserContact: *contact,
 		FirstName:   user.FirstName,
-		MiddleName:  user.MiddleName,
 		LastName:    user.LastName,
 		Active:      user.Active,
-		Flavour:     user.Flavour,
 		UserName:    user.UserName,
 		UserType:    user.UserType,
 		DeviceToken: user.DeviceToken,
-		Residence:   user.Residence,
 	}, nil
 }
 
@@ -114,14 +108,11 @@ func (d *DbServiceImpl) SearchUser(ctx context.Context, searchTerm string) ([]*d
 			ID:          *record.ID,
 			UserContact: *contact,
 			FirstName:   record.FirstName,
-			MiddleName:  record.MiddleName,
 			LastName:    record.LastName,
 			Active:      record.Active,
-			Flavour:     record.Flavour,
 			UserName:    record.UserName,
 			UserType:    record.UserType,
 			DeviceToken: record.DeviceToken,
-			Residence:   record.Residence,
 		})
 	}
 

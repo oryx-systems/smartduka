@@ -12,14 +12,11 @@ import (
 func (d *DbServiceImpl) RegisterUser(ctx context.Context, user *domain.User, contact *domain.Contact) error {
 	usr := &gorm.User{
 		FirstName:   user.FirstName,
-		MiddleName:  user.MiddleName,
 		LastName:    user.LastName,
 		Active:      true,
-		Flavour:     user.Flavour,
 		UserName:    user.UserName,
 		UserType:    user.UserType,
 		DeviceToken: user.DeviceToken,
-		Residence:   user.Residence,
 	}
 
 	ct := &gorm.Contact{

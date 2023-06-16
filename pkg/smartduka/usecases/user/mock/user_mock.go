@@ -5,7 +5,6 @@ import (
 
 	"github.com/brianvoe/gofakeit"
 	"github.com/google/uuid"
-	"github.com/oryx-systems/smartduka/pkg/smartduka/application/enums"
 	"github.com/oryx-systems/smartduka/pkg/smartduka/domain"
 )
 
@@ -17,19 +16,16 @@ type UserMock struct {
 // NewUserMock initializes a new instance of user mock
 func NewUserMock() *UserMock {
 	user := &domain.User{
-		ID:         uuid.New().String(),
-		FirstName:  gofakeit.FirstName(),
-		MiddleName: gofakeit.BeerAlcohol(),
-		LastName:   gofakeit.LastName(),
-		Active:     true,
-		Flavour:    enums.FlavourPro,
-		UserName:   gofakeit.Username(),
-		UserType:   "TENANT",
+		ID:        uuid.New().String(),
+		FirstName: gofakeit.FirstName(),
+		LastName:  gofakeit.LastName(),
+		Active:    true,
+		UserName:  gofakeit.Username(),
+		UserType:  "ADMIN",
 		UserContact: domain.Contact{
 			ID: uuid.New().String(),
 		},
 		DeviceToken: uuid.New().String(),
-		Residence:   uuid.New().String(),
 	}
 
 	return &UserMock{
