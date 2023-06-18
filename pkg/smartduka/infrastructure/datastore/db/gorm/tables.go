@@ -4,14 +4,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/oryx-systems/smartduka/pkg/smartduka/application/common/helpers"
 	"github.com/oryx-systems/smartduka/pkg/smartduka/application/enums"
 	"gorm.io/gorm"
-)
-
-var (
-	// DefaultResidence is the default residence for a user incase none is specified
-	DefaultResidence = helpers.MustGetEnvVar("DEFAULT_RESIDENCE_ID")
 )
 
 // Base is the base table for all tables
@@ -26,19 +20,15 @@ type Base struct {
 type User struct {
 	Base
 
-	ID               *string       `gorm:"column:id"`
-	FirstName        string        `gorm:"column:first_name"`
-	MiddleName       string        `gorm:"column:middle_name"`
-	LastName         string        `gorm:"column:last_name"`
-	Active           bool          `gorm:"column:active"`
-	Flavour          enums.Flavour `gorm:"column:flavour"`
-	UserName         string        `gorm:"column:username"`
-	UserType         string        `gorm:"column:user_type"`
-	DeviceToken      string        `gorm:"column:device_token"`
-	Residence        string        `gorm:"column:residence"`
-	UserContact      Contact       `gorm:"ForeignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;not null"`
-	CurrentResidence *string       `gorm:"column:current_residence"`
-	CurrentHouse     *string       `gorm:"column:current_house"`
+	ID          *string `gorm:"column:id"`
+	FirstName   string  `gorm:"column:firstName"`
+	LastName    string  `gorm:"column:lastName"`
+	Active      bool    `gorm:"column:active"`
+	UserName    string  `gorm:"column:username"`
+	UserType    string  `gorm:"column:userType"`
+	UserContact Contact `gorm:"column:userContact"`
+	DeviceToken string  `gorm:"column:deviceToken"`
+	Email       string  `gorm:"column:email"`
 }
 
 // BeforeCreate is a hook run before creating a user
@@ -48,16 +38,12 @@ func (u *User) BeforeCreate(tx *gorm.DB) (err error) {
 	u.Base.UpdatedAt = time.Now()
 	u.ID = &id
 
-	if u.Residence == "" {
-		u.Residence = DefaultResidence
-	}
-
 	return
 }
 
 // TableName customizes how the table name is generated
 func (User) TableName() string {
-	return "smartduka_user"
+	return "user"
 }
 
 // Contact is a contact model for a user
@@ -83,7 +69,7 @@ func (c *Contact) BeforeCreate(tx *gorm.DB) (err error) {
 
 // TableName customizes how the table name is generated
 func (Contact) TableName() string {
-	return "smartduka_contact"
+	return "contact"
 }
 
 // UserPIN models the user's PIN table
@@ -111,7 +97,7 @@ func (u *UserPIN) BeforeCreate(tx *gorm.DB) (err error) {
 
 // TableName customizes how the table name is generated
 func (UserPIN) TableName() string {
-	return "smartduka_user_pin"
+	return "user_pin"
 }
 
 // OTP is model for one time password
@@ -137,5 +123,57 @@ func (o *OTP) BeforeCreate(tx *gorm.DB) (err error) {
 
 // TableName customizes how the table name is generated
 func (OTP) TableName() string {
-	return "smartduka_user_otp"
+	return "user_otp"
+}
+
+// Sale is used to show sales data
+type Sale struct {
+	Base
+
+	ID        string `gorm:"column:id"`
+	ProductID string `gorm:"column:product_id"`
+	Quantity  string `gorm:"column:quantity"`
+	Unit      string `gorm:"column:unit"`
+	Price     string `gorm:"column:price"`
+	SoldBy    string `gorm:"column:sold_by"`
+}
+
+// BeforeCreate is a hook run before creating an OTP
+func (s *Sale) BeforeCreate(tx *gorm.DB) (err error) {
+	s.Base.CreatedAt = time.Now()
+	s.ID = uuid.New().String()
+	return
+}
+
+// TableName customizes how the table name is generated
+func (Sale) TableName() string {
+	return "sale"
+}
+
+// Product is used to display product info
+type Product struct {
+	Base
+
+	ID           string `gorm:"column:id"`
+	Active       bool   `gorm:"column:active"`
+	Name         string `gorm:"column:name"`
+	Category     string `gorm:"column:category"`
+	Quantity     string `gorm:"column:quantity"`
+	Unit         string `gorm:"column:unit"`
+	Price        string `gorm:"column:price"`
+	Description  string `gorm:"column:description"`
+	Manufacturer string `gorm:"column:manufacturer"`
+	InStock      bool   `gorm:"column:in_stock"`
+}
+
+// BeforeCreate is a hook run before creating an OTP
+func (p *Product) BeforeCreate(tx *gorm.DB) (err error) {
+	p.Base.CreatedAt = time.Now()
+	p.ID = uuid.New().String()
+	return
+}
+
+// TableName customizes how the table name is generated
+func (Product) TableName() string {
+	return "product"
 }

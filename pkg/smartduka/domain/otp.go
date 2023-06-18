@@ -7,12 +7,12 @@ import (
 )
 
 type OTP struct {
-	ID          string        `gorm:"column:id"`
-	IsValid     bool          `gorm:"column:is_valid"`
-	ValidUntil  time.Time     `gorm:"column:valid_until"`
-	PhoneNumber string        `gorm:"column:phone_number"`
-	OTP         string        `gorm:"column:otp"`
-	Flavour     enums.Flavour `gorm:"column:flavour"`
-	Medium      string        `gorm:"column:medium"`
-	UserID      string        `gorm:"column:user_id"`
+	ID          string        `json:"id"`
+	IsValid     bool          `json:"is_valid"`
+	ValidUntil  time.Time     `json:"valid_until"`
+	PhoneNumber string        `json:"phone_number"`
+	OTP         string        `json:"otp"`
+	Flavour     enums.Flavour `json:"flavour"`
+	Medium      string        `json:"medium"`
+	UserID      string        `json:"user_id"`
 }

@@ -64,3 +64,13 @@ func (d *DbServiceImpl) SavePIN(ctx context.Context, pinInput *domain.UserPIN) (
 
 	return true, nil
 }
+
+// Adds a product into the database
+func (d *DbServiceImpl) AddProduct(ctx context.Context, product *domain.Product) (*domain.Product, error) {
+	return nil, nil
+}
+
+// AddSaleRecord adds sale record in the database
+func (d *DbServiceImpl) AddSaleRecord(ctx context.Context, sale *domain.Sale) (*domain.Sale, error) {
+	return nil, nil
+}

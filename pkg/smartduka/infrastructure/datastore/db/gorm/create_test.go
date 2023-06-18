@@ -30,12 +30,10 @@ func TestPGInstance_RegisterUser(t *testing.T) {
 				user: &gorm.User{
 					ID:          &userID,
 					FirstName:   gofakeit.FirstName(),
-					MiddleName:  gofakeit.BeerAlcohol(),
 					LastName:    gofakeit.LastName(),
 					Active:      true,
-					Flavour:     enums.FlavourPro,
 					UserName:    gofakeit.BeerHop(),
-					UserType:    "TENANT",
+					UserType:    "ADMIN",
 					DeviceToken: gofakeit.UUID(),
 				},
 				contact: &gorm.Contact{
@@ -56,10 +54,8 @@ func TestPGInstance_RegisterUser(t *testing.T) {
 				user: &gorm.User{
 					ID:          &userID,
 					FirstName:   gofakeit.FirstName(),
-					MiddleName:  gofakeit.BeerAlcohol(),
 					LastName:    gofakeit.LastName(),
 					Active:      true,
-					Flavour:     enums.FlavourPro,
 					UserName:    gofakeit.BeerHop(),
 					UserType:    "TENANT",
 					DeviceToken: gofakeit.UUID(),

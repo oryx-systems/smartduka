@@ -54,3 +54,13 @@ func (db *PGInstance) SavePIN(ctx context.Context, pinData *UserPIN) (bool, erro
 
 	return true, nil
 }
+
+// Adds a product into the database
+func (db *PGInstance) AddProduct(ctx context.Context, product *Product) (*Product, error) {
+	return nil, nil
+}
+
+// AddSaleRecord adds sale record in the database
+func (db *PGInstance) AddSaleRecord(ctx context.Context, sale *Sale) (*Sale, error) {
+	return nil, nil
+}

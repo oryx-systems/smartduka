@@ -118,3 +118,18 @@ func (d *DbServiceImpl) SearchUser(ctx context.Context, searchTerm string) ([]*d
 
 	return users, nil
 }
+
+// GetProductByID retrieves a product using its ID
+func (d *DbServiceImpl) GetProductByID(ctx context.Context, id string) (*domain.Product, error) {
+	return nil, nil
+}
+
+// GetDailySale retrieves daily sales
+func (d *DbServiceImpl) GetDailySale(ctx context.Context) ([]*domain.Sale, error) {
+	return nil, nil
+}
+
+// SearchProduct searches a product using the term provided by the user
+func (d *DbServiceImpl) SearchProduct(ctx context.Context, searchTerm string) (*domain.Product, error) {
+	return nil, nil
+}

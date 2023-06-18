@@ -14,6 +14,10 @@ type Query interface {
 	GetUserProfileByPhoneNumber(ctx context.Context, phoneNumber string, flavour enums.Flavour) (*User, error)
 	GetUserPINByUserID(ctx context.Context, userID string, flavour enums.Flavour) (*UserPIN, error)
 	SearchUser(ctx context.Context, searchTerm string) ([]*User, error)
+
+	GetProductByID(ctx context.Context, id string) (*Product, error)
+	GetDailySale(ctx context.Context) ([]*Sale, error)
+	SearchProduct(ctx context.Context, searchTerm string) (*Product, error)
 }
 
 // GetUserProfileByUserID fetches a user profile using the user ID
@@ -62,4 +66,19 @@ func (db *PGInstance) SearchUser(ctx context.Context, searchTerm string) ([]*Use
 	}
 
 	return users, nil
+}
+
+// GetProductByID retrieves a product using its ID
+func (db *PGInstance) GetProductByID(ctx context.Context, id string) (*Product, error) {
+	return nil, nil
+}
+
+// GetDailySale retrieves daily sales
+func (db *PGInstance) GetDailySale(ctx context.Context) ([]*Sale, error) {
+	return nil, nil
+}
+
+// SearchProduct searches a product using the term provided by the user
+func (db *PGInstance) SearchProduct(ctx context.Context, searchTerm string) (*Product, error) {
+	return nil, nil
 }

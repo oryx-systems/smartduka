@@ -10,15 +10,20 @@ import (
 
 // InvalidatePIN invalidates a pin that is linked to the user profile.
 // This is done by toggling the IsValid field to false
-func (d *DbServiceImpl) InvalidatePIN(ctx context.Context, userID string, flavour enums.Flavour) (bool, error) {
+func (d *DbServiceImpl) InvalidatePIN(ctx context.Context, userID string, flavour enums.Flavour) error {
 	return d.update.InvalidatePIN(ctx, userID, flavour)
 }
 
 // UpdateUser updates a user record
-func (d *DbServiceImpl) UpdateUser(ctx context.Context, user *domain.User, updateData map[string]interface{}) (bool, error) {
+func (d *DbServiceImpl) UpdateUser(ctx context.Context, user *domain.User, updateData map[string]interface{}) error {
 	data := &gorm.User{
 		ID: &user.ID,
 	}
 
 	return d.update.UpdateUser(ctx, data, updateData)
+}
+
+// UpdateProduct updates product details in the database
+func (d *DbServiceImpl) UpdateProduct(ctx context.Context, product *domain.Product, updateData map[string]interface{}) error {
+	return nil
 }
