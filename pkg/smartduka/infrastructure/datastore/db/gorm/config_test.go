@@ -71,8 +71,6 @@ func TestMain(m *testing.M) {
 		testfixtures.Paths(
 			"../../../../../../fixtures/user.yml",
 			"../../../../../../fixtures/contact.yml",
-			"../../../../../../fixtures/user_pin.yml",
-			"../../../../../../fixtures/user_otp.yml",
 		),
 		// uncomment when running tests locally, if your db is not a test db
 		// Ensure the testing db in the ci is named `test`

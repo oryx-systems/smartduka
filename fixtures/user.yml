@@ -4,7 +4,6 @@
   updated_at: RAW=NOW()
   updated_by: NULL
   first_name: first user
-  middle_name: middle first user
   last_name: last first user
   active: true
   username: test-test
