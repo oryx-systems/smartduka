@@ -9,9 +9,9 @@ import (
 
 // Create is a collection of methods to carry out create operations on the database
 type Create interface {
-	RegisterUser(ctx context.Context, user *domain.User, contact *domain.Contact) error
-	SaveOTP(ctx context.Context, otp *domain.OTP) error
-	SavePIN(ctx context.Context, pinInput *domain.UserPIN) (bool, error)
+	RegisterUser(ctx context.Context, user *domain.User, contact *domain.Contact) (*domain.User, error)
+	SaveOTP(ctx context.Context, otp *domain.OTP) (*domain.OTP, error)
+	SavePIN(ctx context.Context, pinInput *domain.UserPIN) (*domain.UserPIN, error)
 
 	AddProduct(ctx context.Context, product *domain.Product) (*domain.Product, error)
 	AddSaleRecord(ctx context.Context, sale *domain.Sale) (*domain.Sale, error)
