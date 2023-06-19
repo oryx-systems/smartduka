@@ -17,7 +17,7 @@ import (
 // UseCasesUser represents all the user business logic
 type UseCasesUser interface {
 	Login(ctx context.Context, loginInput *dto.LoginInput) (*dto.LoginResponse, error)
-	RegisterUser(ctx context.Context, registerInput *dto.RegisterUserInput) error
+	RegisterUser(ctx context.Context, registerInput *dto.RegisterUserInput) (*domain.User, error)
 	SetUserPIN(ctx context.Context, input *dto.UserPINInput) (bool, error)
 	SearchUserByPhoneNumber(ctx context.Context, phoneNumber string) (*domain.User, error)
 	SearchUser(ctx context.Context, searchTerm string) ([]*domain.User, error)
@@ -98,7 +98,7 @@ func (u UseCasesUserImpl) Login(ctx context.Context, loginInput *dto.LoginInput)
 }
 
 // HandleRegistration handles the user registration
-func (u UseCasesUserImpl) RegisterUser(ctx context.Context, registerInput *dto.RegisterUserInput) error {
+func (u UseCasesUserImpl) RegisterUser(ctx context.Context, registerInput *dto.RegisterUserInput) (*domain.User, error) {
 	user := &domain.User{
 		FirstName: registerInput.FirstName,
 		LastName:  registerInput.LastName,
@@ -113,7 +113,12 @@ func (u UseCasesUserImpl) RegisterUser(ctx context.Context, registerInput *dto.R
 		Flavour:      registerInput.Flavour,
 	}
 
-	return u.Create.RegisterUser(ctx, user, contact)
+	result, err := u.Create.RegisterUser(ctx, user, contact)
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
 }
 
 // SetUserPIN sets the user pin

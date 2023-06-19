@@ -86,7 +86,7 @@ func (o *UseCasesOTPImpl) GenerateAndSendOTP(ctx context.Context, phoneNumber st
 	}
 
 	// Save the OTP to the database
-	err = o.Create.SaveOTP(ctx, otpData)
+	_, err = o.Create.SaveOTP(ctx, otpData)
 	if err != nil {
 		return "", err
 	}

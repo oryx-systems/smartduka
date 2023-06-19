@@ -74,7 +74,8 @@ func TestPGInstance_RegisterUser(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if err := testingDB.RegisterUser(tt.args.ctx, tt.args.user, tt.args.contact); (err != nil) != tt.wantErr {
+			_, err := testingDB.RegisterUser(tt.args.ctx, tt.args.user, tt.args.contact)
+			if (err != nil) != tt.wantErr {
 				t.Errorf("PGInstance.RegisterUser() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})

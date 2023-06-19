@@ -40,7 +40,7 @@ func (p PresentationHandlersImpl) HandleRegistration() gin.HandlerFunc {
 		payload := &dto.RegisterUserInput{}
 		utils.DecodeJSONToTargetStruct(c.Writer, c.Request, payload)
 
-		err := p.usecases.User.RegisterUser(ctx, payload)
+		_, err := p.usecases.User.RegisterUser(ctx, payload)
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return

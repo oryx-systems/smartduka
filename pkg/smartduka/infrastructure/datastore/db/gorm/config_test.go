@@ -69,9 +69,10 @@ func TestMain(m *testing.M) {
 		// The file name should be the same as the table name
 		// order of inserting values matter to avoid foreign key constraint errors
 		testfixtures.Paths(
-			"../../../../../../fixtures/smartduka_user.yml",
-			"../../../../../../fixtures/smartduka_contact.yml",
-			"../../../../../../fixtures/smartduka_identifier.yml",
+			"../../../../../../fixtures/user.yml",
+			"../../../../../../fixtures/contact.yml",
+			"../../../../../../fixtures/user_pin.yml",
+			"../../../../../../fixtures/user_otp.yml",
 		),
 		// uncomment when running tests locally, if your db is not a test db
 		// Ensure the testing db in the ci is named `test`

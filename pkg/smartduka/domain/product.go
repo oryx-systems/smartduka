@@ -16,10 +16,10 @@ type Product struct {
 
 // Sale is used to show sales data
 type Sale struct {
-	ID          string `json:"id"`
-	ProductName string `json:"productName"`
-	Quantity    string `json:"quantity"`
-	Unit        string `json:"unit"`
-	Price       string `json:"price"`
-	SoldBy      string `json:"soldBy"`
+	ID        string `json:"id"`
+	ProductID string `json:"productName"`
+	Quantity  string `json:"quantity"`
+	Unit      string `json:"unit"`
+	Price     string `json:"price"`
+	SoldBy    string `json:"soldBy"`
 }
