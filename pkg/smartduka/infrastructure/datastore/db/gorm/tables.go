@@ -20,15 +20,14 @@ type Base struct {
 type User struct {
 	Base
 
-	ID          *string `gorm:"column:id"`
-	FirstName   string  `gorm:"column:firstName"`
-	LastName    string  `gorm:"column:lastName"`
-	Active      bool    `gorm:"column:active"`
-	UserName    string  `gorm:"column:username"`
-	UserType    string  `gorm:"column:userType"`
-	UserContact Contact `gorm:"column:userContact"`
-	DeviceToken string  `gorm:"column:deviceToken"`
-	Email       string  `gorm:"column:email"`
+	ID        *string `gorm:"column:id"`
+	FirstName string  `gorm:"column:first_name"`
+	LastName  string  `gorm:"column:last_name"`
+	Active    bool    `gorm:"column:active"`
+	UserName  string  `gorm:"column:username"`
+	UserType  string  `gorm:"column:user_type"`
+	PushToken string  `gorm:"column:push_token"`
+	Email     string  `gorm:"column:email"`
 }
 
 // BeforeCreate is a hook run before creating a user

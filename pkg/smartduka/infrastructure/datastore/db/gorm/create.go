@@ -37,8 +37,6 @@ func (db *PGInstance) RegisterUser(ctx context.Context, user *User, contact *Con
 		return nil, err
 	}
 
-	user.UserContact = *contact
-
 	return user, nil
 }
 

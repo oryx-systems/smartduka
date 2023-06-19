@@ -34,7 +34,7 @@ func TestPGInstance_RegisterUser(t *testing.T) {
 					Active:      true,
 					UserName:    gofakeit.BeerHop(),
 					UserType:    "ADMIN",
-					DeviceToken: gofakeit.UUID(),
+					PushToken: gofakeit.UUID(),
 				},
 				contact: &gorm.Contact{
 					ID:           uuid.New().String(),
@@ -58,7 +58,7 @@ func TestPGInstance_RegisterUser(t *testing.T) {
 					Active:      true,
 					UserName:    gofakeit.BeerHop(),
 					UserType:    "TENANT",
-					DeviceToken: gofakeit.UUID(),
+					PushToken: gofakeit.UUID(),
 				},
 				contact: &gorm.Contact{
 					ID:           uuid.New().String(),

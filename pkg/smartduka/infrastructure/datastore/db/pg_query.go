@@ -15,24 +15,23 @@ func (d *DbServiceImpl) GetUserProfileByUserID(ctx context.Context, userID strin
 		return nil, fmt.Errorf("failed to get user profile by user ID: %v", err)
 	}
 
-	contact := &domain.Contact{
-		ID:           user.UserContact.ID,
-		Active:       user.UserContact.Active,
-		ContactType:  user.UserContact.ContactType,
-		ContactValue: user.UserContact.ContactValue,
-		Flavour:      user.UserContact.Flavour,
-		UserID:       *user.ID,
-	}
+	// contact := &domain.Contact{
+	// 	ID:           user.UserContact.ID,
+	// 	Active:       user.UserContact.Active,
+	// 	ContactType:  user.UserContact.ContactType,
+	// 	ContactValue: user.UserContact.ContactValue,
+	// 	Flavour:      user.UserContact.Flavour,
+	// 	UserID:       *user.ID,
+	// }
 
 	return &domain.User{
 		ID:          *user.ID,
-		UserContact: *contact,
 		FirstName:   user.FirstName,
 		LastName:    user.LastName,
 		Active:      user.Active,
 		UserName:    user.UserName,
 		UserType:    user.UserType,
-		DeviceToken: user.DeviceToken,
+		DeviceToken: user.PushToken,
 	}, nil
 }
 
@@ -43,24 +42,23 @@ func (d *DbServiceImpl) GetUserProfileByPhoneNumber(ctx context.Context, phoneNu
 		return nil, fmt.Errorf("failed to get user profile by phonenumber: %v", err)
 	}
 
-	contact := &domain.Contact{
-		ID:           user.UserContact.ID,
-		Active:       user.UserContact.Active,
-		ContactType:  user.UserContact.ContactType,
-		ContactValue: user.UserContact.ContactValue,
-		Flavour:      user.UserContact.Flavour,
-		UserID:       *user.ID,
-	}
+	// contact := &domain.Contact{
+	// 	ID:           user.UserContact.ID,
+	// 	Active:       user.UserContact.Active,
+	// 	ContactType:  user.UserContact.ContactType,
+	// 	ContactValue: user.UserContact.ContactValue,
+	// 	Flavour:      user.UserContact.Flavour,
+	// 	UserID:       *user.ID,
+	// }
 
 	return &domain.User{
 		ID:          *user.ID,
-		UserContact: *contact,
 		FirstName:   user.FirstName,
 		LastName:    user.LastName,
 		Active:      user.Active,
 		UserName:    user.UserName,
 		UserType:    user.UserType,
-		DeviceToken: user.DeviceToken,
+		DeviceToken: user.PushToken,
 	}, nil
 }
 
@@ -95,24 +93,23 @@ func (d *DbServiceImpl) SearchUser(ctx context.Context, searchTerm string) ([]*d
 	}
 
 	for _, record := range records {
-		contact := &domain.Contact{
-			ID:           record.UserContact.ID,
-			Active:       record.UserContact.Active,
-			ContactType:  record.UserContact.ContactType,
-			ContactValue: record.UserContact.ContactValue,
-			Flavour:      record.UserContact.Flavour,
-			UserID:       *record.ID,
-		}
+		// contact := &domain.Contact{
+		// 	ID:           record.UserContact.ID,
+		// 	Active:       record.UserContact.Active,
+		// 	ContactType:  record.UserContact.ContactType,
+		// 	ContactValue: record.UserContact.ContactValue,
+		// 	Flavour:      record.UserContact.Flavour,
+		// 	UserID:       *record.ID,
+		// }
 
 		users = append(users, &domain.User{
 			ID:          *record.ID,
-			UserContact: *contact,
 			FirstName:   record.FirstName,
 			LastName:    record.LastName,
 			Active:      record.Active,
 			UserName:    record.UserName,
 			UserType:    record.UserType,
-			DeviceToken: record.DeviceToken,
+			DeviceToken: record.PushToken,
 		})
 	}
 

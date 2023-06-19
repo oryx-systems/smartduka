@@ -11,14 +11,13 @@ import (
 // RegisterUser registers a new user in the database
 func (d *DbServiceImpl) RegisterUser(ctx context.Context, user *domain.User, contact *domain.Contact) (*domain.User, error) {
 	usr := &gorm.User{
-		FirstName:   user.FirstName,
-		LastName:    user.LastName,
-		Active:      user.Active,
-		UserName:    user.UserName,
-		UserType:    user.UserType,
-		UserContact: gorm.Contact{},
-		DeviceToken: user.DeviceToken,
-		Email:       user.Email,
+		FirstName: user.FirstName,
+		LastName:  user.LastName,
+		Active:    user.Active,
+		UserName:  user.UserName,
+		UserType:  user.UserType,
+		PushToken: user.DeviceToken,
+		Email:     user.Email,
 	}
 
 	contactData := &gorm.Contact{
@@ -35,21 +34,14 @@ func (d *DbServiceImpl) RegisterUser(ctx context.Context, user *domain.User, con
 	}
 
 	return &domain.User{
-		ID:        *response.ID,
-		FirstName: response.FirstName,
-		LastName:  response.LastName,
-		Active:    response.Active,
-		UserName:  response.UserName,
-		UserType:  response.UserType,
-		UserContact: domain.Contact{
-			ID:           response.UserContact.ID,
-			Active:       response.UserContact.Active,
-			ContactType:  response.UserContact.ContactType,
-			ContactValue: response.UserContact.ContactValue,
-			Flavour:      response.UserContact.Flavour,
-			UserID:       *response.UserContact.UserID,
-		},
-		DeviceToken: response.DeviceToken,
+		ID:          *response.ID,
+		FirstName:   response.FirstName,
+		LastName:    response.LastName,
+		Active:      response.Active,
+		UserName:    response.UserName,
+		UserType:    response.UserType,
+		UserContact: domain.Contact{},
+		DeviceToken: response.PushToken,
 		Email:       response.Email,
 	}, nil
 }
