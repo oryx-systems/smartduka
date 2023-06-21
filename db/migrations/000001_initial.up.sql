@@ -21,14 +21,15 @@ CREATE TABLE "product" (
   "created_at" timestamp NOT NULL,
   "created_by" uuid NOT NULL,
   "updated_at" timestamp,
-  "updated_by" uuid NOT NULL,
+  "updated_by" uuid,
   "deleted_at" timestamp,
   "active" boolean NOT NULL,
   "name" varchar(50) NOT NULL,
   "category" varchar(25) NOT NULL,
-  "quantity" varchar(10) NOT NULL,
+  "quantity" float NOT NULL,
   "unit" varchar(15) NOT NULL,
   "price" float NOT NULL,
+  "vat" float NOT NULL,
   "description" text,
   "manufacturer" varchar(50),
   "in_stock" boolean NOT NULL
@@ -39,14 +40,13 @@ CREATE TABLE "sale" (
   "created_at" timestamp NOT NULL,
   "created_by" uuid NOT NULL,
   "updated_at" timestamp,
-  "updated_by" uuid NOT NULL,
+  "updated_by" uuid,
   "deleted_at" timestamp,
   "active" boolean NOT NULL,
   "product_id" uuid NOT NULL,
-  "quantity" varchar(50) NOT NULL,
+  "quantity" float NOT NULL,
   "unit" varchar(50) NOT NULL,
-  "price" float NOT NULL,
-  "sold_by" uuid NOT NULL
+  "price" float NOT NULL
 );
 
 CREATE TABLE "user_pin" (
@@ -84,7 +84,7 @@ ALTER TABLE "product" ADD FOREIGN KEY ("updated_by") REFERENCES "user" ("id");
 
 ALTER TABLE "sale" ADD FOREIGN KEY ("product_id") REFERENCES "product" ("id");
 
-ALTER TABLE "sale" ADD FOREIGN KEY ("sold_by") REFERENCES "user" ("id");
+ALTER TABLE "sale" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
 
 ALTER TABLE "user_pin" ADD FOREIGN KEY ("user_id") REFERENCES "user" ("id");
 

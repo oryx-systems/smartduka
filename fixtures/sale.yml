@@ -1,0 +1,10 @@
+- id: {{.test_sale_id}}
+  created_at: RAW=NOW()
+  created_by: {{.test_user_id}}
+  updated_at: RAW=NOW()
+  updated_by: NULL
+  active: true
+  product_id: {{.test_product_id}}
+  quantity: {{.test_quantity_id}}
+  unit: DOZEN
+  price: 400.78

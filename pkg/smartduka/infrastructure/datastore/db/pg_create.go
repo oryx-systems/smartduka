@@ -54,7 +54,6 @@ func (d *DbServiceImpl) SaveOTP(ctx context.Context, otp *domain.OTP) (*domain.O
 		PhoneNumber: otp.PhoneNumber,
 		OTP:         otp.OTP,
 		Flavour:     otp.Flavour,
-		Medium:      otp.Medium,
 		UserID:      otp.UserID,
 	}
 
@@ -70,7 +69,6 @@ func (d *DbServiceImpl) SaveOTP(ctx context.Context, otp *domain.OTP) (*domain.O
 		PhoneNumber: result.PhoneNumber,
 		OTP:         result.OTP,
 		Flavour:     result.Flavour,
-		Medium:      result.Medium,
 		UserID:      result.UserID,
 	}, nil
 }
@@ -83,7 +81,6 @@ func (d *DbServiceImpl) SavePIN(ctx context.Context, pinInput *domain.UserPIN) (
 		ValidFrom: pinInput.ValidFrom,
 		ValidTo:   pinInput.ValidTo,
 		Active:    pinInput.Active,
-		Flavour:   pinInput.Flavour,
 		Salt:      pinInput.Salt,
 	}
 
@@ -95,7 +92,6 @@ func (d *DbServiceImpl) SavePIN(ctx context.Context, pinInput *domain.UserPIN) (
 	return &domain.UserPIN{
 		ID:        result.ID,
 		Active:    result.Active,
-		Flavour:   result.Flavour,
 		ValidFrom: result.ValidFrom,
 		ValidTo:   result.ValidTo,
 		HashedPIN: result.HashedPIN,
@@ -144,7 +140,6 @@ func (d *DbServiceImpl) AddSaleRecord(ctx context.Context, sale *domain.Sale) (*
 		Quantity:  sale.Quantity,
 		Unit:      sale.Unit,
 		Price:     sale.Price,
-		SoldBy:    sale.SoldBy,
 	}
 
 	result, err := d.create.AddSaleRecord(ctx, saleObj)
@@ -158,6 +153,6 @@ func (d *DbServiceImpl) AddSaleRecord(ctx context.Context, sale *domain.Sale) (*
 		Quantity:  result.Quantity,
 		Unit:      result.Unit,
 		Price:     result.Price,
-		SoldBy:    result.SoldBy,
+		SoldBy:    *result.Base.CreatedBy,
 	}, nil
 }

@@ -77,7 +77,6 @@ func (d *DbServiceImpl) GetUserPINByUserID(ctx context.Context, userID string, f
 		HashedPIN: pinData.HashedPIN,
 		ValidFrom: pinData.ValidFrom,
 		ValidTo:   pinData.ValidTo,
-		Flavour:   pinData.Flavour,
 		Active:    pinData.Active,
 		Salt:      pinData.Salt,
 	}, nil

@@ -1,0 +1,16 @@
+- id: {{.test_product_id}}
+  created_at: RAW=NOW()
+  created_by: {{.test_user_id}}
+  updated_at: RAW=NOW()
+  updated_by: NULL
+  deleted_at: NULL
+  active: true
+  name: Panadol
+  category: PHARMACEUTICALS
+  quantity: {{.test_quantity_id}}
+  unit: Box
+  price: 760.00
+  vat: 16.00
+  description: test description
+  manufacturer: Max manufacturers
+  in_stock: true

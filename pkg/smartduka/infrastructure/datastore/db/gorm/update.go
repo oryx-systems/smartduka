@@ -17,7 +17,7 @@ type Update interface {
 
 // InvalidatePIN invalidates a pin that is linked to the user profile when a new one is created
 func (db *PGInstance) InvalidatePIN(ctx context.Context, userID string, flavour enums.Flavour) error {
-	err := db.DB.WithContext(ctx).Model(&UserPIN{}).Where(&UserPIN{UserID: userID, Active: true, Flavour: flavour}).Select("active").Updates(UserPIN{Active: false}).Error
+	err := db.DB.WithContext(ctx).Model(&UserPIN{}).Where(&UserPIN{UserID: userID, Active: true}).Select("active").Updates(UserPIN{Active: false}).Error
 	if err != nil {
 		return fmt.Errorf("an error occurred while invalidating the pin: %v", err)
 	}

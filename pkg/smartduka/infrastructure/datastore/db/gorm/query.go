@@ -46,7 +46,7 @@ func (db *PGInstance) GetUserPINByUserID(ctx context.Context, userID string, fla
 		return nil, fmt.Errorf("flavour is not valid")
 	}
 	var pin UserPIN
-	if err := db.DB.Where(&UserPIN{UserID: userID, Active: true, Flavour: flavour}).First(&pin).Error; err != nil {
+	if err := db.DB.Where(&UserPIN{UserID: userID, Active: true}).First(&pin).Error; err != nil {
 		return nil, fmt.Errorf("failed to get pin: %v", err)
 	}
 
