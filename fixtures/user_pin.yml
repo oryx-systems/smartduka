@@ -1,0 +1,11 @@
+- id: 6ecbbc80-24c8-421a-9f1a-e14e12678ee0
+  created_at: RAW=NOW()
+  created_by: NULL
+  updated_at: RAW=NOW()
+  updated_by: NULL
+  active: true
+  valid_from: 2023-06-21 21:16:29.23639+03
+  valid_to: RAW=NOW() + INTERVAL '24 hour'
+  hashed_pin: {{.hash}}
+  salt: {{.salt}}
+  user_id: {{.test_user_id}}

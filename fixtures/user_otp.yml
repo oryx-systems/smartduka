@@ -1,0 +1,11 @@
+- id: 6ecbbc80-24c8-421a-9f1a-e14e12678ee0
+  created_at: RAW=NOW()
+  created_by: {{.test_user_id}}
+  updated_at: RAW=NOW()
+  updated_by: NULL
+  is_valid: true
+  valid_until: RAW=NOW() + INTERVAL '1 hour'
+  phone_number: {{.test_phone}}
+  otp: {{.test_otp}}
+  flavour: PRO
+  user_id: {{.test_user_id}}

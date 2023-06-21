@@ -23,8 +23,12 @@ var (
 	// Pin variables
 	salt, encryptedPin string
 	userID             = "6ecbbc80-24c8-421a-9f1a-e14e12678ee0"
+	productID          = "6ecbbc80-24c8-421a-9f1a-e14e12678ee0"
+	saleID             = "6ecbbc80-24c8-421a-9f1a-e14e12678ee0"
 	testPhone          = "+254722000000"
 	testIdentifier     = "123456789"
+	testQuantity       = 10.00
+	testOTP            = "1234"
 )
 
 func TestMain(m *testing.M) {
@@ -64,6 +68,10 @@ func TestMain(m *testing.M) {
 			"test_user_id":          userID,
 			"test_phone":            "\"" + testPhone + "\"",
 			"test_identifier_value": "\"" + testIdentifier + "\"",
+			"test_product_id":       productID,
+			"test_sale_id":          saleID,
+			"test_quantity_id":      testQuantity,
+			"test_otp":              "\"" + testOTP + "\"",
 		}),
 		// this is the directory containing the YAML files.
 		// The file name should be the same as the table name
@@ -71,6 +79,10 @@ func TestMain(m *testing.M) {
 		testfixtures.Paths(
 			"../../../../../../fixtures/user.yml",
 			"../../../../../../fixtures/contact.yml",
+			"../../../../../../fixtures/product.yml",
+			"../../../../../../fixtures/sale.yml",
+			"../../../../../../fixtures/user_pin.yml",
+			"../../../../../../fixtures/user_otp.yml",
 		),
 		// uncomment when running tests locally, if your db is not a test db
 		// Ensure the testing db in the ci is named `test`

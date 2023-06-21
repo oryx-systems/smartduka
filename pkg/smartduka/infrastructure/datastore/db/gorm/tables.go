@@ -75,14 +75,13 @@ func (Contact) TableName() string {
 type UserPIN struct {
 	Base
 
-	ID        string        `gorm:"column:id"`
-	Active    bool          `gorm:"column:active"`
-	Flavour   enums.Flavour `gorm:"column:flavour"`
-	ValidFrom time.Time     `gorm:"column:valid_from"`
-	ValidTo   time.Time     `gorm:"column:valid_to"`
-	HashedPIN string        `gorm:"column:hashed_pin"`
-	Salt      string        `gorm:"column:salt"`
-	UserID    string        `gorm:"column:user_id"`
+	ID        string    `gorm:"column:id"`
+	Active    bool      `gorm:"column:active"`
+	ValidFrom time.Time `gorm:"column:valid_from"`
+	ValidTo   time.Time `gorm:"column:valid_to"`
+	HashedPIN string    `gorm:"column:hashed_pin"`
+	Salt      string    `gorm:"column:salt"`
+	UserID    string    `gorm:"column:user_id"`
 }
 
 // BeforeCreate is a hook run before creating user PIN
@@ -109,7 +108,6 @@ type OTP struct {
 	PhoneNumber string        `gorm:"column:phone_number"`
 	OTP         string        `gorm:"column:otp"`
 	Flavour     enums.Flavour `gorm:"column:flavour"`
-	Medium      string        `gorm:"column:medium"`
 	UserID      string        `gorm:"column:user_id"`
 }
 
@@ -129,12 +127,12 @@ func (OTP) TableName() string {
 type Sale struct {
 	Base
 
-	ID        string `gorm:"column:id"`
-	ProductID string `gorm:"column:product_id"`
-	Quantity  string `gorm:"column:quantity"`
-	Unit      string `gorm:"column:unit"`
-	Price     string `gorm:"column:price"`
-	SoldBy    string `gorm:"column:sold_by"`
+	ID        string  `gorm:"column:id"`
+	Active    bool    `gorm:"column:active"`
+	ProductID string  `gorm:"column:product_id"`
+	Quantity  float64 `gorm:"column:quantity"`
+	Unit      string  `gorm:"column:unit"`
+	Price     float64 `gorm:"column:price"`
 }
 
 // BeforeCreate is a hook run before creating an OTP
@@ -153,16 +151,17 @@ func (Sale) TableName() string {
 type Product struct {
 	Base
 
-	ID           string `gorm:"column:id"`
-	Active       bool   `gorm:"column:active"`
-	Name         string `gorm:"column:name"`
-	Category     string `gorm:"column:category"`
-	Quantity     string `gorm:"column:quantity"`
-	Unit         string `gorm:"column:unit"`
-	Price        string `gorm:"column:price"`
-	Description  string `gorm:"column:description"`
-	Manufacturer string `gorm:"column:manufacturer"`
-	InStock      bool   `gorm:"column:in_stock"`
+	ID           string  `gorm:"column:id"`
+	Active       bool    `gorm:"column:active"`
+	Name         string  `gorm:"column:name"`
+	Category     string  `gorm:"column:category"`
+	Quantity     float64 `gorm:"column:quantity"`
+	Unit         string  `gorm:"column:unit"`
+	Price        float64 `gorm:"column:price"`
+	VAT          float64 `gorm:"column:vat"`
+	Description  string  `gorm:"column:description"`
+	Manufacturer string  `gorm:"column:manufacturer"`
+	InStock      bool    `gorm:"column:in_stock"`
 }
 
 // BeforeCreate is a hook run before creating an OTP

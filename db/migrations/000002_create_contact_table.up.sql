@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS "contact" (
   "deleted_at" timestamp,
   "contact_type" varchar(16) NOT NULL,
   "contact_value" text NOT NULL,
+  "flavour" text NOT NULL,
   "user_id" uuid NOT NULL
 );
 

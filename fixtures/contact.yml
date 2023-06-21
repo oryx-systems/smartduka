@@ -6,4 +6,5 @@
   active: true
   contact_type: PHONE
   contact_value: {{.test_phone}}
+  flavour: PRO
   user_id: {{.test_user_id}}
