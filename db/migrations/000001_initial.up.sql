@@ -1,6 +1,6 @@
 BEGIN;
 
-CREATE TABLE "user" (
+CREATE TABLE "smartduka_user" (
   "id" uuid UNIQUE PRIMARY KEY NOT NULL,
   "created_at" timestamp NOT NULL,
   "created_by" uuid,
@@ -16,7 +16,7 @@ CREATE TABLE "user" (
   "push_token" varchar(200)
 );
 
-CREATE TABLE "product" (
+CREATE TABLE "smartduka_product" (
   "id" uuid UNIQUE PRIMARY KEY NOT NULL,
   "created_at" timestamp NOT NULL,
   "created_by" uuid NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE "product" (
   "in_stock" boolean NOT NULL
 );
 
-CREATE TABLE "sale" (
+CREATE TABLE "smartduka_sale" (
   "id" uuid UNIQUE PRIMARY KEY NOT NULL,
   "created_at" timestamp NOT NULL,
   "created_by" uuid NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE "sale" (
   "price" float NOT NULL
 );
 
-CREATE TABLE "user_pin" (
+CREATE TABLE "smartduka_user_pin" (
   "id" uuid PRIMARY KEY,
   "created_at" timestamp NOT NULL,
   "created_by" uuid,
@@ -64,7 +64,7 @@ CREATE TABLE "user_pin" (
   "user_id" uuid NOT NULL
 );
 
-CREATE TABLE "user_otp" (
+CREATE TABLE "smartduka_user_otp" (
   "id" uuid PRIMARY KEY NOT NULL,
   "created_at" timestamp NOT NULL,
   "created_by" uuid,
@@ -78,16 +78,16 @@ CREATE TABLE "user_otp" (
   "user_id" uuid NOT NULL
 );
 
-ALTER TABLE "product" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
+ALTER TABLE "smartduka_product" ADD FOREIGN KEY ("created_by") REFERENCES "smartduka_user" ("id");
 
-ALTER TABLE "product" ADD FOREIGN KEY ("updated_by") REFERENCES "user" ("id");
+ALTER TABLE "smartduka_product" ADD FOREIGN KEY ("updated_by") REFERENCES "smartduka_user" ("id");
 
-ALTER TABLE "sale" ADD FOREIGN KEY ("product_id") REFERENCES "product" ("id");
+ALTER TABLE "smartduka_sale" ADD FOREIGN KEY ("product_id") REFERENCES "smartduka_product" ("id");
 
-ALTER TABLE "sale" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
+ALTER TABLE "smartduka_sale" ADD FOREIGN KEY ("created_by") REFERENCES "smartduka_user" ("id");
 
-ALTER TABLE "user_pin" ADD FOREIGN KEY ("user_id") REFERENCES "user" ("id");
+ALTER TABLE "smartduka_user_pin" ADD FOREIGN KEY ("user_id") REFERENCES "smartduka_user" ("id");
 
-ALTER TABLE "user_otp" ADD FOREIGN KEY ("user_id") REFERENCES "user" ("id");
+ALTER TABLE "smartduka_user_otp" ADD FOREIGN KEY ("user_id") REFERENCES "smartduka_user" ("id");
 
 COMMIT;

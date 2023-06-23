@@ -1,5 +1,5 @@
 BEGIN;
 
-DROP TABLE IF EXISTS "contact";
+DROP TABLE IF EXISTS "smartduka_contact";
 
 COMMIT;

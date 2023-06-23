@@ -1,6 +1,6 @@
 BEGIN;
 
-CREATE TABLE IF NOT EXISTS "contact" (
+CREATE TABLE IF NOT EXISTS "smartduka_contact" (
   "id" uuid PRIMARY KEY NOT NULL,
   "active" boolean NOT NULL,
   "created_at" timestamp NOT NULL,
@@ -14,6 +14,6 @@ CREATE TABLE IF NOT EXISTS "contact" (
   "user_id" uuid NOT NULL
 );
 
-ALTER TABLE "contact" ADD FOREIGN KEY ("user_id") REFERENCES "user" ("id");
+ALTER TABLE "smartduka_contact" ADD FOREIGN KEY ("user_id") REFERENCES "smartduka_user" ("id");
 
 COMMIT;

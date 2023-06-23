@@ -28,6 +28,7 @@ type User struct {
 	UserType  string  `gorm:"column:user_type"`
 	PushToken string  `gorm:"column:push_token"`
 	Email     string  `gorm:"column:email"`
+	Contacts  Contact `gorm:"ForeignKey:user_id;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;not null"`
 }
 
 // BeforeCreate is a hook run before creating a user
@@ -42,7 +43,7 @@ func (u *User) BeforeCreate(tx *gorm.DB) (err error) {
 
 // TableName customizes how the table name is generated
 func (User) TableName() string {
-	return "user"
+	return "smartduka_user"
 }
 
 // Contact is a contact model for a user
@@ -68,7 +69,7 @@ func (c *Contact) BeforeCreate(tx *gorm.DB) (err error) {
 
 // TableName customizes how the table name is generated
 func (Contact) TableName() string {
-	return "contact"
+	return "smartduka_contact"
 }
 
 // UserPIN models the user's PIN table
@@ -95,7 +96,7 @@ func (u *UserPIN) BeforeCreate(tx *gorm.DB) (err error) {
 
 // TableName customizes how the table name is generated
 func (UserPIN) TableName() string {
-	return "user_pin"
+	return "smartduka_user_pin"
 }
 
 // OTP is model for one time password
@@ -120,7 +121,7 @@ func (o *OTP) BeforeCreate(tx *gorm.DB) (err error) {
 
 // TableName customizes how the table name is generated
 func (OTP) TableName() string {
-	return "user_otp"
+	return "smartduka_user_otp"
 }
 
 // Sale is used to show sales data
@@ -133,6 +134,7 @@ type Sale struct {
 	Quantity  float64 `gorm:"column:quantity"`
 	Unit      string  `gorm:"column:unit"`
 	Price     float64 `gorm:"column:price"`
+	Product   Product `gorm:"ForeignKey:product_id;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;not null"`
 }
 
 // BeforeCreate is a hook run before creating an OTP
@@ -144,7 +146,7 @@ func (s *Sale) BeforeCreate(tx *gorm.DB) (err error) {
 
 // TableName customizes how the table name is generated
 func (Sale) TableName() string {
-	return "sale"
+	return "smartduka_sale"
 }
 
 // Product is used to display product info
@@ -173,5 +175,5 @@ func (p *Product) BeforeCreate(tx *gorm.DB) (err error) {
 
 // TableName customizes how the table name is generated
 func (Product) TableName() string {
-	return "product"
+	return "smartduka_product"
 }
