@@ -37,5 +37,10 @@ func (db *PGInstance) UpdateUser(ctx context.Context, user *User, updateData map
 
 // UpdateProduct updates product details
 func (db *PGInstance) UpdateProduct(ctx context.Context, product *Product, updateData map[string]interface{}) error {
+	err := db.DB.WithContext(ctx).Model(&product).Updates(updateData).Error
+	if err != nil {
+		return fmt.Errorf("an error occurred while updating the product: %v", err)
+	}
+
 	return nil
 }
