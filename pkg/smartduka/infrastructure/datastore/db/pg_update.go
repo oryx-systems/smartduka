@@ -25,5 +25,9 @@ func (d *DbServiceImpl) UpdateUser(ctx context.Context, user *domain.User, updat
 
 // UpdateProduct updates product details in the database
 func (d *DbServiceImpl) UpdateProduct(ctx context.Context, product *domain.Product, updateData map[string]interface{}) error {
-	return nil
+	data := &gorm.Product{
+		ID: product.ID,
+	}
+
+	return d.update.UpdateProduct(ctx, data, updateData)
 }
